@@ -1,0 +1,11 @@
+[package]
+name = "error-handling"
+version = "0.1.0"
+authors = ["Wojciech Gawroński <afronski@gmail.com>"]
+edition = "2018"
+
+# Use this to strip debug information!
+[profile.release]
+panic = 'abort'
+
+[dependencies]
