@@ -1,0 +1,11 @@
+[package]
+name = "aws-sdk"
+version = "1.0.0"
+authors = ["Wojciech Gawroński <afronski@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+rusoto_core = "0.46"
+rusoto_kinesisvideo = "0.46"
+rusoto_kinesis_video_media = "0.46"
