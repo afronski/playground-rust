@@ -4,17 +4,14 @@ use rusoto_kinesisvideo::{KinesisVideo, KinesisVideoClient, ListStreamsInput};
 #[tokio::main]
 async fn main() {
     let client = KinesisVideoClient::new(Region::default());
-    let mut token: String = String::new();
+    let mut next_token: Option<String> = None;
 
     println!("Available streams:");
 
     loop {
         let list_streams_input: ListStreamsInput = ListStreamsInput {
             max_results: Some(25),
-            next_token: match &mut token {
-                str if str.is_empty() => None,
-                rest => Some(rest.to_string()),
-            },
+            next_token,
             stream_name_condition: None,
         };
 
@@ -28,7 +25,7 @@ async fn main() {
                                 None => (),
                             }
                         }
-                    }
+                    },
                     None => println!("No streams!"),
                 }
 
@@ -36,7 +33,7 @@ async fn main() {
                     break;
                 }
 
-                token = output.next_token.unwrap();
+                next_token = output.next_token;
             },
             Err(error) => {
                 println!("Error: {:?}", error);
