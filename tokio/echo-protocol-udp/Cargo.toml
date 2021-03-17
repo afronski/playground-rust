@@ -1,0 +1,8 @@
+[package]
+name = "echo-protocol-udp"
+version = "1.0.0"
+authors = ["Wojciech Gawroński <afronski@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+tokio = { version = "1.3.0", features = ["full"] }
